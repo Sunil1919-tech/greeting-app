@@ -1,12 +1,15 @@
 package com.bridgelabz.greetingapp.controller;
 
 import com.bridgelabz.greetingapp.dto.UserDTO;
+import com.bridgelabz.greetingapp.service.GreetingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class GreetingController {
+
     @GetMapping(value = "/greet")
-    public String getMessage() {
+    public String getGreeting() {
         return "Hello from BridgeLabz";
     }
 
@@ -23,5 +26,13 @@ public class GreetingController {
             @RequestBody UserDTO userDTO
     ) {
         return userDTO;
+    }
+
+    @Autowired
+    private GreetingService greetingService;
+
+    @GetMapping("/message1")
+    public String getMessage() {
+        return greetingService.getMessage();
     }
 }
