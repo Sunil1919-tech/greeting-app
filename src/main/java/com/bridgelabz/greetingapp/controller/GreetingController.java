@@ -13,6 +13,13 @@ public class GreetingController {
         return "Hello from BridgeLabz";
     }
 
+    @GetMapping(value ="/{name}")
+    public String getPath(
+            @PathVariable String name
+    ) {
+        return "Hello " + name + " from Hyderabad";
+    }
+
     @GetMapping(value = "/message")
     public String getGreeting(
             @RequestParam String firstName,
