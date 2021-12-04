@@ -58,10 +58,10 @@ public class GreetingController {
         return greetingService.getAllMessages();
     }
 
-//    @GetMapping("/greetingMessage2/{id}")
-//    public String findGreetByID(
-//            @PathVariable int id
-//    ){
-//        return greetingService.findGreetingByID(id);
-//    }
+    @GetMapping("/greetingMessage2/{id}")
+    public String findGreetByID(
+            @PathVariable int id
+    ) {
+        return greetingService.findGreetingByID(id);
+    }
 }

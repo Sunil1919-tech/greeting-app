@@ -37,4 +37,13 @@ public class GreetingService {
                 })
                 .collect(Collectors.toList());
     }
+
+    public String findGreetingByID(int id) {
+        Optional<Greeting> greeting = greetingRepository.findById(id);
+        if (greeting.isPresent()) {
+            return "The Greeting with id is present:" + id;
+        }
+        return "not found id:" + id;
+    }
+
 }
