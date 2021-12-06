@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class Greeting {
+public class GreetingEntity {
 
     @Id
     @GeneratedValue

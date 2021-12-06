@@ -1,7 +1,7 @@
 package com.bridgelabz.greetingapp.service;
 
 import com.bridgelabz.greetingapp.dto.GreetingDTO;
-import com.bridgelabz.greetingapp.entity.Greeting;
+import com.bridgelabz.greetingapp.entity.GreetingEntity;
 import com.bridgelabz.greetingapp.repository.GreetingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,8 +20,8 @@ public class GreetingService {
         return "Hello World...!";
     }
 
-    public Greeting saveMessage(GreetingDTO greetingDto) {
-        Greeting greeting = new Greeting();
+    public GreetingEntity saveMessage(GreetingDTO greetingDto) {
+        GreetingEntity greeting = new GreetingEntity();
         greeting.setMessage(greetingDto.getMessage());
         return greetingRepository.save(greeting);
     }
@@ -39,11 +39,17 @@ public class GreetingService {
     }
 
     public String findGreetingByID(int id) {
-        Optional<Greeting> greeting = greetingRepository.findById(id);
+        Optional<GreetingEntity> greeting = greetingRepository.findById(id);
         if (greeting.isPresent()) {
             return "The Greeting with id is present:" + id;
         }
         return "not found id:" + id;
     }
 
+    public String editGreeting(int id, GreetingDTO greetingDTO) {
+        GreetingEntity updateMessage = greetingRepository.findById(id).get();
+        updateMessage.setMessage(greetingDTO.getMessage());
+        greetingRepository.save(updateMessage);
+        return "Greeting edited successfully " + id;
+    }
 }

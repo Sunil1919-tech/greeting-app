@@ -2,7 +2,7 @@ package com.bridgelabz.greetingapp.controller;
 
 import com.bridgelabz.greetingapp.dto.GreetingDTO;
 import com.bridgelabz.greetingapp.dto.UserDTO;
-import com.bridgelabz.greetingapp.entity.Greeting;
+import com.bridgelabz.greetingapp.entity.GreetingEntity;
 import com.bridgelabz.greetingapp.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -48,7 +48,7 @@ public class GreetingController {
     }
 
     @PostMapping("/greetingMessage")
-    public Greeting saveGreeting(
+    public GreetingEntity saveGreeting(
             @RequestBody GreetingDTO greetingDTO
     ) {
         return greetingService.saveMessage(greetingDTO);
@@ -58,10 +58,18 @@ public class GreetingController {
         return greetingService.getAllMessages();
     }
 
-    @GetMapping("/greetingMessage2/{id}")
+    @GetMapping("/get-message-by-id/{id}")
     public String findGreetByID(
             @PathVariable int id
     ) {
         return greetingService.findGreetingByID(id);
+    }
+
+    @PutMapping("/update-message/{id}")
+    public String editGreet(
+            @PathVariable(value = "id") int id,
+            @RequestBody GreetingDTO greetingDTO
+    ){
+        return greetingService.editGreeting(id,greetingDTO);
     }
 }
