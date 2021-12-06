@@ -52,4 +52,10 @@ public class GreetingService {
         greetingRepository.save(updateMessage);
         return "Greeting edited successfully " + id;
     }
+
+    public String deleteGreeting(int id) {
+        GreetingEntity deleteMessage = greetingRepository.findById(id).get();
+        greetingRepository.delete(deleteMessage);
+        return "Greeting Deleted" + id;
+    }
 }
